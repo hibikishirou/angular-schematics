@@ -1,7 +1,9 @@
 import { strings } from '@angular-devkit/core';
 import { apply, mergeWith, Rule, SchematicContext, Tree, url, template } from '@angular-devkit/schematics';
-import { NewModule } from './newModule';
-
+export interface NewModule {
+  name: string;
+  path: string;
+}
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.

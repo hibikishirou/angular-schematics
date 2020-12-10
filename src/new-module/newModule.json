@@ -16,7 +16,7 @@
             "type": "string",
             "description": "Path",
             "$default": {
-                "$source": "name",
+                "$source": "path",
                 "index": 0
             },
             "x-prompt": "Path Folder:"
