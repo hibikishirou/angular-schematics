@@ -9,7 +9,7 @@ export interface NewModule {
 // per file.
 export function newModule(_options: NewModule): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const sourceTemplates = url('./templates');
+    const sourceTemplates = url('../files');
     const sourceParametrizedTemplates = apply(sourceTemplates, [
       template({
         ..._options,
