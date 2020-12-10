@@ -6,10 +6,10 @@ import * as path from 'path';
 const collectionPath = path.join(__dirname, '../collection.json');
 
 
-describe('angular-schematics', () => {
+describe('new-module', () => {
   it('works', async () => {
     const runner = new SchematicTestRunner('schematics', collectionPath);
-    const tree = await runner.runSchematicAsync('angular-schematics', {}, Tree.empty()).toPromise();
+    const tree = await runner.runSchematicAsync('new-module', {}, Tree.empty()).toPromise();
 
     expect(tree.files).toEqual([]);
   });

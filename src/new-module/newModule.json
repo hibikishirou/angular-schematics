@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "title": "New Module Schema",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "Module Name",
+            "$default": {
+                "$source": "name",
+                "index": 0
+            },
+            "x-prompt": "Module Name:"
+        },
+        "path": {
+            "type": "string",
+            "description": "Path",
+            "$default": {
+                "$source": "name",
+                "index": 0
+            },
+            "x-prompt": "Path Folder:"
+        }
+    },
+    "required": [
+        "name",
+        "path"
+    ]
+}
