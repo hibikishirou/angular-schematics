@@ -62,7 +62,7 @@ export function newModule(_options: NewModule): Rule {
           "serve": {
             "builder": "@angular-devkit/build-angular:dev-server",
             "options": {
-              "browserTarget": "activity-log:build"
+              "browserTarget": `${name}:build`
             }
           }
         }
