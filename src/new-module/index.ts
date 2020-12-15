@@ -75,7 +75,7 @@ export function newModule(_options: NewModule): Rule {
     }
   }
   const updateAppModule = (tree: Tree, _options: NewModule) => {
-    const { name, appPath } = _options;
+    const { name, appPath = 'src/app/' } = _options;
     const appModulePath = `${appPath}/app.module.ts`;
     let appModuleFile = tree.read(appModulePath);
     if (appModuleFile) {
