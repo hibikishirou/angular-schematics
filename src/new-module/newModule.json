@@ -20,6 +20,15 @@
                 "index": 0
             },
             "x-prompt": "Path Folder:"
+        },
+        "appPath": {
+            "type": "string",
+            "description": "App Module Path",
+            "$default": {
+                "$source": "src/app/",
+                "index": 0
+            },
+            "x-prompt": "App Module Path: (default: 'src/app/')"
         }
     },
     "required": [

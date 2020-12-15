@@ -1,8 +1,10 @@
 import { strings } from '@angular-devkit/core';
+import { classify, dasherize } from '@angular-devkit/core/src/utils/strings';
 import { apply, mergeWith, Rule, SchematicContext, Tree, url, template } from '@angular-devkit/schematics';
 export interface NewModule {
   name: string;
   path: string;
+  appPath: string;
 }
 
 // You don't have to export the function as default. You can also have more than one rule factory
@@ -72,9 +74,25 @@ export function newModule(_options: NewModule): Rule {
       tree.overwrite(angularPath, JSON.stringify(angularData, null, 2));
     }
   }
+  const updateAppModule = (tree: Tree, _options: NewModule) => {
+    const { name, appPath } = _options;
+    const appModulePath = `${appPath}/app.module.ts`;
+    let appModuleFile = tree.read(appModulePath);
+    if (appModuleFile) {
+      const contentString = appModuleFile.toString();
+      const appendIndex = contentString.indexOf('AppRoutingModule,');
+      const contentTwoAppend = `${classify(name)}SharedModule.forRoot(),\n    `;
+      const importIndex = contentString.indexOf(`import { PlatformSharedModule } from '@app/pages/platform/platform.module';`);
+      const importString = `import { ${classify(name)}SharedModule } from '@app/pages/${dasherize(name)}/${dasherize(name)}.module';\n`;
+      let updatedContent = `${contentString.slice(0, appendIndex)}${contentTwoAppend}${contentString.slice(appendIndex)}`;
+      updatedContent = `${updatedContent.slice(0, importIndex)}${importString}${updatedContent.slice(importIndex)}`
+      tree.overwrite(appModulePath, updatedContent);
+    }
+  }
   return (tree: Tree, _context: SchematicContext) => {
     const newFile = genderNewFile();
     updateAngularFile(tree, _options);
+    updateAppModule(tree, _options);
     return mergeWith(newFile)(tree, _context);
   };
 }
