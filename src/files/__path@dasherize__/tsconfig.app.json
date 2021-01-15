@@ -10,7 +10,8 @@
         "../../themes/**/*.ts",
         "../platform/**/*.ts",
         "../../common/**/*.ts",
-        "../../store/**/*.ts"
+        "../../store/**/*.ts",
+        "../../core/**/*.ts",
     ],
     "exclude": [
         "test.ts",
